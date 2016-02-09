@@ -1,15 +1,15 @@
 package ws.endpoint;
 
-import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.jws.WebService;
 import ws.endpoint.context.GreetingWebServiceContext;
 
-@Stateless
+@WebService
 public class GreetingWebService {
-
+    
     @Inject
     private GreetingWebServiceContext ctx;
-
+    
     public String sayHello(String who) {
         return "Hello, " + who + "!";
     }
