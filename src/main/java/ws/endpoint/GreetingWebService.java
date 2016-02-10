@@ -1,6 +1,8 @@
 package ws.endpoint;
 
 import javax.inject.Inject;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 import ws.endpoint.context.GreetingWebServiceContext;
 
@@ -14,9 +16,9 @@ public class GreetingWebService {
     @Inject
     private GreetingWebServiceContext ctx;
 
-    public String sayHello(String who) {
-        return "Hello, " + who + "!";
-    }
+	public String sayHello(@WebParam(name="who") String who) {
+		return "Hello, " + who + "!";
+	}
 
     public void hello() {
         ctx.incNumberOfHellos();
@@ -45,11 +47,12 @@ public class GreetingWebService {
                 + greeting.getReceiver().getCompleteName() + "!";
     }
 
-    public Greeting getSomeGreeting() {
-        Greeting greeting = new Greeting("Ahoj",
-                new Person("Ján", "Novák", Gender.MALE),
-                new Person("Mária", "Dušičková", Gender.FEMALE));
-        return greeting;
-    }
+	@WebResult(name="greeting")
+	public Greeting getSomeGreeting() {
+		Greeting greeting = new Greeting("Ahoj",
+				new Person("Ján", "Novák", Gender.MALE),
+				new Person("Mária", "Dušičková", Gender.FEMALE));
+		return greeting;
+	}
 
 }
