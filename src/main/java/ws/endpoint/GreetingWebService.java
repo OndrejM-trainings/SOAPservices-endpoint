@@ -1,6 +1,7 @@
 package ws.endpoint;
 
 import javax.inject.Inject;
+import javax.jws.WebMethod;
 import javax.jws.WebService;
 import ws.endpoint.context.GreetingWebServiceContext;
 
@@ -34,6 +35,7 @@ public class GreetingWebService {
         return Math.max(0, ctx.getNumberOfHellos() - ctx.getNumberOfGoodByes());
     }
 
+	@WebMethod(exclude = true)
 	public String sendGreeting(Greeting greeting) {
 		return greeting.getSender().getCompleteName() + ": "
 				+ greeting.getGreetingWord() + ", "
