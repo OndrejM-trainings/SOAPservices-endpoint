@@ -1,28 +1,33 @@
 package ws.endpoint;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import ws.endpoint.context.GreetingWebServiceContext;
+
+@Stateless
 public class GreetingWebService {
-	
-	private int numberOfHellos;
-	private int numberOfGoodByes;
-	
-	public String sayHello(String who) {
-		return "Hello, " + who + "!";
-	}
 
-	public void hello() {
-		numberOfHellos++;
-	}
-	
-	public void goodBye() {
-		numberOfGoodByes++;
-	}
+    @Inject
+    private GreetingWebServiceContext ctx;
 
-	public int getNumberOfGreetings() {
-		return numberOfHellos + numberOfGoodByes;
-	}
+    public String sayHello(String who) {
+        return "Hello, " + who + "!";
+    }
 
-	public int getNumberOfHellosWithoutGoodBye() {
-		return Math.max(0, numberOfHellos - numberOfGoodByes);
-	}
+    public void hello() {
+        ctx.incNumberOfHellos();
+    }
+
+    public void goodBye() {
+        ctx.incNumberOfGoodByes();
+    }
+
+    public int getNumberOfGreetings() {
+        return ctx.getNumberOfHellos() + ctx.getNumberOfGoodByes();
+    }
+
+    public int getNumberOfHellosWithoutGoodBye() {
+        return Math.max(0, ctx.getNumberOfHellos() - ctx.getNumberOfGoodByes());
+    }
 
 }
