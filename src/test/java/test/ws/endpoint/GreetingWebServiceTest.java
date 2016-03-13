@@ -18,7 +18,7 @@ public class GreetingWebServiceTest {
     }
 
     @Test
-    public void goodByeWorks() {
+    public void goodByeWorks() throws Exception {
         GreetingWebService ws = greetingWebService();
         final int numberOfHellos = 10;
         int counter = numberOfHellos;
