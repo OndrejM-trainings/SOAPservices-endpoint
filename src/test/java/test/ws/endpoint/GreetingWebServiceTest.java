@@ -1,8 +1,6 @@
 package test.ws.endpoint;
 
 import com.google.inject.*;
-import javax.enterprise.context.ApplicationScoped;
-import javax.faces.application.Application;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
